@@ -1,6 +1,6 @@
 # Psalmotee Portfolio
 
-A modern, responsive personal portfolio website built with **React** and **Vite**, featuring clean design, animated components, and modular architecture.
+A modern, responsive personal portfolio website built with **React** and **Vite**, featuring clean design animated components, and modular architecture.
 
 ## 🚀 Tech Stack
 
