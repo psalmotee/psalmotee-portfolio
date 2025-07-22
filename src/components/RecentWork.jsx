@@ -73,11 +73,21 @@ const RecentWork = () => {
                   index % 2 === 1 ? "sm:order-1" : "sm:order-2"
                 } w-full h-full rounded-xl overflow-hidden shadow-lg flex items-center justify-center`}
               >
-                <img
+                {/* <img
                   src={project.image}
                   alt={project.title}
                   className="w-full h-full object-contain"
-                />
+                /> */}
+
+                <div className="bg-gradient-to-br from-primary to-secondary p-1">
+                  <div className="w-full h-full rounded-3xl bg-neutral flex items-center justify-center overflow-hidden">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover rounded-3xl"
+                    />
+                  </div>
+                </div>
               </div>
 
               {/* Content on right for odd-indexed projects */}
