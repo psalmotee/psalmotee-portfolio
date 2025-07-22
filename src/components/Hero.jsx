@@ -7,26 +7,26 @@ const Hero = () => {
   return (
     <section className="min-h-screen flex items-center justify-center pt-20 px-6">
       <div className="container mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid sm:grid-cols-2 gap-12 items-center">
           {/* Text Content */}
           <div className="space-y-8">
             <div className="space-y-4">
               <h1 className="text-3xl lg:text-5xl font-bold font-franklin">
-                Hello. <br />
+                Hello.
               </h1>
               
-              <p className="text-primary text-2xl font-normal">
+              <p className="text-2xl font-normal">
                <span>_______</span> I'm Tolulope
               </p>
-              <h2 className="text-2xl lg:text-3xl text-gradient font-inter">
+              <h2 className="text-2xl lg:text-3xl font-bold text-gradient font-inter">
                 Front-End Developer
               </h2>
             </div>
 
             <p className="text-lg text-gray-300 max-w-2xl font-inter leading-relaxed">
               I'm a front-end developer passionate about creating beautiful,
-              functional, and user-friendly web experiences. With expertise in
-              React, TypeScript, and modern web technologies, I bring ideas to
+              functional, and user-friendly web experiences. With experience in HTML/CSS,
+              React, Vue, TypeScript, and modern web technologies, I bring ideas to
               life through clean code and thoughtful design.
             </p>
 
@@ -74,7 +74,7 @@ const Hero = () => {
           </div>
 
           {/* Profile Image */}
-          <div className="flex justify-center lg:justify-end">
+          <div className="flex justify-center sm:justify-end">
             <div className="relative">
               <div className="w-80 h-80 rounded-full bg-gradient-to-br from-primary to-secondary p-1">
                 <div className="w-full h-full rounded-full bg-neutral flex items-center justify-center overflow-hidden">
@@ -86,8 +86,8 @@ const Hero = () => {
                 </div>
               </div>
               {/* Floating elements */}
-              <div className="absolute -top-4 -right-4 w-8 h-8 bg-secondary rounded-full animate-pulse"></div>
-              <div className="absolute -bottom-6 -left-6 w-12 h-12 bg-primary rounded-full animate-bounce"></div>
+              <div className="absolute -top-4 right-2 w-8 h-8 bg-secondary rounded-full animate-pulse"></div>
+              <div className="absolute -bottom-6 -left-4 w-12 h-12 bg-primary rounded-full animate-bounce"></div>
             </div>
           </div>
         </div>

@@ -13,13 +13,9 @@ import { SiReact, SiTypescript, SiJavascript, } from "react-icons/si";
 const About = () => {
   const skills = [
     { name: "HTML & CSS", icon: Code, color: "text-purple-500" },
-    {
-      name: "React",
-      icon: SiReact,
-      color: "text-blue-400",
-    },
-    { name: "TypeScript", icon: SiTypescript, color: "text-blue-500" },
     { name: "JavaScript", icon: SiJavascript, color: "text-yellow-400" },
+    { name: "React", icon: SiReact, color: "text-blue-400" },
+    { name: "TypeScript", icon: SiTypescript, color: "text-blue-500" },
     {
       name: "Tailwind CSS, DaisyUI, Etc.",
       icon: Palette,
@@ -36,7 +32,6 @@ const About = () => {
       icon: Globe,
       color: "text-gray-400",
     },
-    // { name: "API Integration", icon: Code, color: "text-green-500" },
   ];
 
   return (
@@ -51,18 +46,20 @@ const About = () => {
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
-            <p className="text-lg text-gray-300 leading-relaxed font-inter">
-              I'm a passionate front-end developer with a love for creating
-              beautiful, functional, and user-friendly web applications. With
-              over 3 years of experience in web development, I specialize in
-              React, TypeScript, and modern web technologies.
+                        <p className="text-lg text-gray-300 leading-relaxed font-inter">
+              I started my journey in web development out of a curiosity for how
+              websites worked. That curiosity grew into a passion for solving
+              problems and building interactive experiences from the ground up.
+              Today, I continue to enjoy the process of turning ideas into real,
+              usable products.
             </p>
 
             <p className="text-lg text-gray-300 leading-relaxed font-inter">
-              My journey in web development started with a curiosity about how
-              websites work, and it has evolved into a career where I get to
-              solve complex problems and create amazing digital experiences
-              every day.
+              I specialize in front-end development, focusing on creating
+              responsive, accessible, and performant web applications. My goal is
+              to deliver high-quality code that not only meets the needs of users
+              but also provides a seamless experience across all devices and
+              browsers.
             </p>
 
             <div className="flex items-center space-x-4">

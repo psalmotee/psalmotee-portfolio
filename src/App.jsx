@@ -2,7 +2,7 @@ import React from "react";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import About from "./components/About";
-// import RecentWork from "./components/RecentWork";
+import RecentWork from "./components/RecentWork";
 // import Contact from "./components/Contact";
 // import Footer from "./components/Footer";
 
@@ -15,7 +15,7 @@ function App() {
       <Header />
       <Hero />
       <About />
-      {/* <RecentWork /> */}
+      <RecentWork />
       {/* <Contact /> */}
       {/* <Footer /> */}
     </div>
