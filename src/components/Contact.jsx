@@ -112,7 +112,7 @@ const Contact = () => {
           <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mt-4"></div>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-2 gap-12 justify-center items-center">
           {/* Contact Information */}
           <div className="space-y-8">
             <div className="space-y-6">
@@ -269,7 +269,7 @@ const Contact = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="btn btn-primary w-full text-white py-3 rounded-full font-inter hover:scale-105 transition-transform duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="btn btn-primary text-white py-3 rounded-full font-inter hover:scale-105 transition-transform duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? (
                       <span className="loading loading-spinner"></span>

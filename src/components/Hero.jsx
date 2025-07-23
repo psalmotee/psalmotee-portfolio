@@ -1,22 +1,33 @@
 import React from "react";
 import { Github, Linkedin, Twitter, Mail } from "lucide-react";
 // import { Link } from "react-router-dom";
-import ProfilePhoto from "../assets/images/Psalmotee.png"
+import { Typewriter } from "react-simple-typewriter";
+import ProfilePhoto from "../assets/images/Psalmotee.png";
 
 const Hero = () => {
   return (
     <section className="min-h-screen flex items-center justify-center pt-20 px-6">
       <div className="container mx-auto">
-        <div className="grid sm:grid-cols-2 gap-12 items-center">
+        <div className="grid sm:grid-cols-2 gap-12 items-center justify-center">
           {/* Text Content */}
           <div className="space-y-8">
             <div className="space-y-4">
               <h1 className="text-3xl lg:text-5xl font-bold font-franklin">
                 Hello.
               </h1>
-              
+
               <p className="text-2xl font-normal">
-               <span>_______</span> I'm Tolulope
+                <span>_______</span> {" "}
+                <Typewriter
+                  words={[
+                    "I'm Tolulope",
+                    "Psalmotee Tech",
+                  ]}
+                  loop={true}
+                  typeSpeed={50}
+                  deleteSpeed={30}
+                  delaySpeed={1000}
+                />
               </p>
               <h2 className="text-2xl lg:text-3xl font-bold text-gradient font-inter">
                 Front-End Developer
@@ -25,9 +36,9 @@ const Hero = () => {
 
             <p className="text-lg text-gray-300 max-w-2xl font-inter leading-relaxed">
               I'm a front-end developer passionate about creating beautiful,
-              functional, and user-friendly web experiences. With experience in HTML/CSS,
-              React, Vue, TypeScript, and modern web technologies, I bring ideas to
-              life through clean code and thoughtful design.
+              functional, and user-friendly web experiences. With experience in
+              HTML/CSS, React, Vue, TypeScript, and modern web technologies, I
+              bring ideas to life through clean code and thoughtful design.
             </p>
 
             <div className="flex space-x-6">
@@ -57,12 +68,6 @@ const Hero = () => {
                 className="text-gray-400 hover:text-primary transition-colors duration-300"
               >
                 <Linkedin size={24} />
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-primary transition-colors duration-300"
-              >
-                <Twitter size={24} />
               </a>
               <a
                 href="mailto:samsonmoradeyo@gmail.com"

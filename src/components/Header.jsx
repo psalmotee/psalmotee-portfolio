@@ -19,7 +19,7 @@ const Header = () => {
         <div className="flex justify-between items-center">
           <div className="text-2xl font-bold font-franklin">
             <a href="/">
-              <span className="text-primary">Psalmotee</span> Tech
+              <span className="text-primary">Tolulope</span>
             </a>
           </div>
 

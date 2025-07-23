@@ -4,7 +4,7 @@ import Hero from "./components/Hero";
 import About from "./components/About";
 import RecentWork from "./components/RecentWork";
 import Contact from "./components/Contact";
-// import Footer from "./components/Footer";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
       <About />
       <RecentWork />
       <Contact />
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }
