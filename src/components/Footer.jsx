@@ -4,8 +4,8 @@ import { Github, Linkedin, Twitter, Mail } from "lucide-react";
 function Footer() {
   return (
     <footer className="py-10 text-center bg-neutral/90 backdrop-blur-md shadow-lg">
-      <p>
-        Psalmotee Tech <Code className="inline text-purple-500" />{" "}
+      <p className="text-primary font-franklin font-bold text-lg">
+        &lt; Psalmotee Tech &gt;
       </p>
       <p> Built with Love</p>
       <p>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Mail, Phone, MapPin, Send, CheckCircle } from "lucide-react";
-  import emailjs from "emailjs-com";
+import emailjs from "emailjs-com";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -53,7 +53,6 @@ const Contact = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -78,7 +77,6 @@ const Contact = () => {
       setIsSubmitting(false);
     }
   };
-
 
   const contactInfo = [
     {
@@ -272,7 +270,7 @@ const Contact = () => {
                     className="btn btn-primary text-white py-3 rounded-full font-inter hover:scale-105 transition-transform duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? (
-                      <span className="loading loading-spinner"></span>
+                      <span className="loading loading-infinity loading-md"></span>
                     ) : (
                       <>
                         <Send size={16} className="mr-2" />
