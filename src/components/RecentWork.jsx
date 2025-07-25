@@ -4,6 +4,7 @@ import TeamCol from "../assets/images/Projects-Shoot/Team Col.png";
 import CodeQuest from "../assets/images/Projects-Shoot/CodeQuest.png";
 import ToDo from "../assets/images/Projects-Shoot/ToDo.png";
 import ReceiptGen from "../assets/images/Projects-Shoot/ReceiptGen.png";
+import { motion } from "framer-motion";
 
 const RecentWork = () => {
   const projects = [
@@ -51,34 +52,42 @@ const RecentWork = () => {
     <section className="py-20 px-6 bg-portfolio-bg text-white font-inter">
       <div className="container mx-auto max-w-6xl">
         {/* Header */}
-        <div className="text-center mb-16">
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: -40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          viewport={{ once: true }}
+        >
           <h2 className="text-4xl lg:text-5xl font-bold font-franklin mb-4">
             Recent Work
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
-
-          <p className="text-gray-300 text-lg">
+          <p className="text-gray-300 text-lg mt-4">
             A collection of projects I've worked on.
           </p>
-        </div>
+        </motion.div>
+
         <div className="space-y-12">
           {projects.map((project, index) => (
-            <div
+            <motion.div
               key={project.title}
               className="grid sm:grid-cols-2 gap-12 items-center"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
             >
               {/* Image on left for odd-indexed projects */}
-              <div
+              <motion.div
                 className={`${
                   index % 2 === 1 ? "sm:order-1" : "sm:order-2"
                 } w-full h-full rounded-xl overflow-hidden shadow-lg flex items-center justify-center`}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
               >
-                {/* <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-contain"
-                /> */}
-
                 <div className="bg-gradient-to-br from-primary to-secondary p-1">
                   <div className="w-full h-full rounded-3xl bg-neutral flex items-center justify-center overflow-hidden">
                     <img
@@ -88,13 +97,17 @@ const RecentWork = () => {
                     />
                   </div>
                 </div>
-              </div>
+              </motion.div>
 
               {/* Content on right for odd-indexed projects */}
-              <div
+              <motion.div
                 className={`space-y-6 ${
                   index % 2 === 1 ? "sm:order-2" : "sm:order-1"
                 }`}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                viewport={{ once: true }}
               >
                 <p className="text-sm text-secondary uppercase tracking-wide font-medium">
                   Featured Project
@@ -135,8 +148,8 @@ const RecentWork = () => {
                     <span>View Code</span>
                   </a>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           ))}
         </div>
       </div>

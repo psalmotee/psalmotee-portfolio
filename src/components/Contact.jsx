@@ -1,6 +1,28 @@
 import React, { useState } from "react";
 import { Mail, Phone, MapPin, Send, CheckCircle } from "lucide-react";
+import { motion } from "framer-motion";
 import emailjs from "emailjs-com";
+
+const fadeIn = (direction = "up", delay = 0) => {
+  const variants = {
+    hidden: {
+      opacity: 0,
+      y: direction === "up" ? 40 : direction === "down" ? -40 : 0,
+      x: direction === "left" ? 40 : direction === "right" ? -40 : 0,
+    },
+    show: {
+      opacity: 1,
+      y: 0,
+      x: 0,
+      transition: {
+        duration: 0.8,
+        delay: delay,
+        ease: "easeOut",
+      },
+    },
+  };
+  return variants;
+};
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -15,49 +37,30 @@ const Contact = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-    // Clear error when user starts typing
+    setFormData((prev) => ({ ...prev, [name]: value }));
+
     if (errors[name]) {
-      setErrors((prev) => ({
-        ...prev,
-        [name]: "",
-      }));
+      setErrors((prev) => ({ ...prev, [name]: "" }));
     }
   };
 
   const validateForm = () => {
     const newErrors = {};
-
-    if (!formData.name.trim()) {
-      newErrors.name = "Name is required";
-    }
-
+    if (!formData.name.trim()) newErrors.name = "Name is required";
     if (!formData.email.trim()) {
       newErrors.email = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = "Email is invalid";
     }
-
-    if (!formData.subject.trim()) {
-      newErrors.subject = "Subject is required";
-    }
-
-    if (!formData.message.trim()) {
-      newErrors.message = "Message is required";
-    }
-
+    if (!formData.subject.trim()) newErrors.subject = "Subject is required";
+    if (!formData.message.trim()) newErrors.message = "Message is required";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (!validateForm()) return;
-
     setIsSubmitting(true);
 
     try {
@@ -65,9 +68,8 @@ const Contact = () => {
         "service_u2xiyzc",
         "template_83zyizp",
         formData,
-        "_ws1WNCgc08bRg5vC" // Found in EmailJS Account → Integration → Public Key
+        "_ws1WNCgc08bRg5vC"
       );
-
       setIsSubmitted(true);
       setFormData({ name: "", email: "", subject: "", message: "" });
     } catch (error) {
@@ -95,24 +97,35 @@ const Contact = () => {
       icon: MapPin,
       label: "Location",
       value: "Nigeria",
-      // href: "#",
     },
   ];
 
   return (
     <section id="contact" className="py-20 px-6">
       <div className="container mx-auto">
-        <div className="text-center mb-16">
+        <motion.div
+          className="text-center mb-16"
+          variants={fadeIn("up", 0.1)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.4 }}
+        >
           <h2 className="text-4xl lg:text-5xl font-bold font-franklin mb-4">
             Contact
           </h2>
           <p className="text-xl text-gray-400 font-inter">Drop me a message</p>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mt-4"></div>
-        </div>
+          <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mt-4" />
+        </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 justify-center items-center">
-          {/* Contact Information */}
-          <div className="space-y-8">
+          {/* Contact Info */}
+          <motion.div
+            className="space-y-8"
+            variants={fadeIn("right", 0.2)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.3 }}
+          >
             <div className="space-y-6">
               <h3 className="text-2xl font-bold font-franklin text-white">
                 Get in touch
@@ -143,14 +156,25 @@ const Contact = () => {
                 </a>
               ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Contact Form */}
-          <div className="relative">
+          <motion.div
+            className="relative"
+            variants={fadeIn("left", 0.3)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.3 }}
+          >
             <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-3xl blur-3xl"></div>
             <div className="relative bg-neutral/50 backdrop-blur-sm rounded-3xl p-8 border border-gray-700">
               {isSubmitted ? (
-                <div className="text-center py-8">
+                <motion.div
+                  className="text-center py-8"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5 }}
+                >
                   <CheckCircle
                     size={64}
                     className="text-green-400 mx-auto mb-4"
@@ -167,121 +191,117 @@ const Contact = () => {
                   >
                     Send Another Message
                   </button>
-                </div>
+                </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="form-control">
-                      <label className="label">
-                        <span className="label-text text-gray-300 font-inter">
-                          Name
-                        </span>
-                      </label>
-                      <input
-                        type="text"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        className={`input input-bordered w-full bg-base-100/50 text-white placeholder-gray-400 border-gray-600 focus:border-primary ${
-                          errors.name ? "border-red-500" : ""
-                        }`}
-                        placeholder="Your name"
-                      />
-                      {errors.name && (
-                        <span className="text-red-500 text-sm mt-1">
-                          {errors.name}
-                        </span>
-                      )}
-                    </div>
+                  <motion.div
+                    variants={fadeIn("left", 0.2)}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, amount: 0.4 }}
+                  >
+                    <input
+                      type="text"
+                      name="name"
+                      placeholder="Your Name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      className="w-full bg-transparent border border-gray-600 rounded-md px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-primary"
+                    />
+                    {errors.name && (
+                      <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+                    )}
+                  </motion.div>
 
-                    <div className="form-control">
-                      <label className="label">
-                        <span className="label-text text-gray-300 font-inter">
-                          Email
-                        </span>
-                      </label>
-                      <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        className={`input input-bordered w-full bg-base-100/50 text-white placeholder-gray-400 border-gray-600 focus:border-primary ${
-                          errors.email ? "border-red-500" : ""
-                        }`}
-                        placeholder="your@email.com"
-                      />
-                      {errors.email && (
-                        <span className="text-red-500 text-sm mt-1">
-                          {errors.email}
-                        </span>
-                      )}
-                    </div>
-                  </div>
+                  <motion.div
+                    variants={fadeIn("left", 0.4)}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, amount: 0.4 }}
+                  >
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Your Email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      className="w-full bg-transparent border border-gray-600 rounded-md px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-primary"
+                    />
+                    {errors.email && (
+                      <p className="text-red-500 text-sm mt-1">
+                        {errors.email}
+                      </p>
+                    )}
+                  </motion.div>
 
-                  <div className="form-control">
-                    <label className="label">
-                      <span className="label-text text-gray-300 font-inter">
-                        Subject
-                      </span>
-                    </label>
+                  <motion.div
+                    variants={fadeIn("left", 0.6)}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, amount: 0.4 }}
+                  >
                     <input
                       type="text"
                       name="subject"
+                      placeholder="Subject"
                       value={formData.subject}
                       onChange={handleChange}
-                      className={`input input-bordered w-full bg-base-100/50 text-white placeholder-gray-400 border-gray-600 focus:border-primary ${
-                        errors.subject ? "border-red-500" : ""
-                      }`}
-                      placeholder="What's this about?"
+                      className="w-full bg-transparent border border-gray-600 rounded-md px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-primary"
                     />
                     {errors.subject && (
-                      <span className="text-red-500 text-sm mt-1">
+                      <p className="text-red-500 text-sm mt-1">
                         {errors.subject}
-                      </span>
+                      </p>
                     )}
-                  </div>
+                  </motion.div>
 
-                  <div className="form-control">
-                    <label className="label">
-                      <span className="label-text text-gray-300 font-inter">
-                        Message
-                      </span>
-                    </label>
+                  <motion.div
+                    variants={fadeIn("left", 0.8)}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, amount: 0.4 }}
+                  >
                     <textarea
                       name="message"
+                      rows={5}
+                      placeholder="Your Message"
                       value={formData.message}
                       onChange={handleChange}
-                      rows="6"
-                      className={`textarea textarea-bordered w-full bg-base-100/50 text-white placeholder-gray-400 border-gray-600 focus:border-primary resize-none ${
-                        errors.message ? "border-red-500" : ""
-                      }`}
-                      placeholder="Tell me about your project..."
+                      className="w-full bg-transparent border border-gray-600 rounded-md px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-primary resize-none"
                     ></textarea>
                     {errors.message && (
-                      <span className="text-red-500 text-sm mt-1">
+                      <p className="text-red-500 text-sm mt-1">
                         {errors.message}
-                      </span>
+                      </p>
                     )}
-                  </div>
+                  </motion.div>
 
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="btn btn-primary text-white py-3 rounded-full font-inter hover:scale-105 transition-transform duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                  <motion.div
+                    variants={fadeIn("left", 1.0)}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, amount: 0.4 }}
                   >
-                    {isSubmitting ? (
-                      <span className="loading loading-infinity loading-md"></span>
-                    ) : (
-                      <>
-                        <Send size={16} className="mr-2" />
-                        Send Message
-                      </>
-                    )}
-                  </button>
+                    <motion.div
+                      variants={fadeIn("left", 1.2)}
+                      initial="hidden"
+                      whileInView="show"
+                      viewport={{ once: true, amount: 0.4 }}
+                    >
+                      <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="btn btn-primary text-white py-3 rounded-full font-inter hover:scale-105 transition-transform duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        <Send size={18} />
+                        {isSubmitting ? "Sending..." : "Send Message"}
+                      </button>
+                    </motion.div>
+                  </motion.div>
                 </form>
               )}
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
